@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<input type=checkbox id=show><label for=show>show trajectories</label>
+	<b></b><b></b><b></b><b></b>
+	<b></b><b></b><b></b><b></b>
+	<style>
+:root {
+  --size: 512px;
+  --item: 32px;
+  --time: 2000ms;
+  --count: 8;
+}
+
+b {
+  display: block;
+  width: var(--size);
+  height: var(--item);
+  background-image: url(https://svgshare.com/i/CVK.svg);
+  background-repeat: no-repeat;
+  background-size: var(--item) var(--item);
+  animation: move cubic-bezier(0.364212423249, 0, 0.635787576751, 1) var(--time) alternate infinite;
+  animation-delay: calc(var(--time) / var(--count) * var(--index));
+  transform: rotate(calc(180deg / var(--count) * var(--index)));
+  filter: brightness(1.5) hue-rotate(calc(300deg / var(--count) * var(--index)));
+  position: absolute;
+  left: 0;
+  top: calc(var(--size)/2);
+}
+
+@keyframes move {
+  from { background-position: 0 50%; }
+  to { background-position: 100% 50%; }
+}
+
+b:nth-of-type(1) { --index: 0; }
+b:nth-of-type(2) { --index: 1; }
+b:nth-of-type(3) { --index: 2; }
+b:nth-of-type(4) { --index: 3; }
+b:nth-of-type(5) { --index: 4; }
+b:nth-of-type(6) { --index: 5; }
+b:nth-of-type(7) { --index: 6; }
+b:nth-of-type(8) { --index: 7; }
+
+#show:checked ~ b::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 50%;
+  border-bottom: 1px solid #888;
+}
+	</style>
+</html>
